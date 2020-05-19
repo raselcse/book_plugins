@@ -122,34 +122,34 @@ class Book_class
     }
 
     $post_query = new WP_Query($settings);
+    if ($post_query->have_posts()) :
+      $list = '<div id="book-section">';
 
-    $list = '<div id="book-section">';
+      $args = array(
+        'child_of'                 => 0,
+        'parent'                   => '',
+        'orderby'                  => 'name',
+        'order'                    => 'ASC',
+        'hide_empty'               => 1,
+        'hierarchical'             => 1,
+        'taxonomy'                 => 'book_category',
+        'pad_counts'               => false
+      );
+      $categories = get_categories($args);
 
-    $args = array(
-      'child_of'                 => 0,
-      'parent'                   => '',
-      'orderby'                  => 'name',
-      'order'                    => 'ASC',
-      'hide_empty'               => 1,
-      'hierarchical'             => 1,
-      'taxonomy'                 => 'book_category',
-      'pad_counts'               => false
-    );
-    $categories = get_categories($args);
+      $list .= '<ul class="category_list">';
+      $active_class_all_category = empty($category_value) ? 'active' : '';
+      $list .= '<li class="' . $active_class_all_category . '"><a href="' . site_url() . '/book-page/"> All </a></li>';
+      foreach ($categories as $category) {
+        $active_class = ($category_value == $category->slug) ? 'active' : '';
+        $url = get_term_link($category);
+        $list .= '<li class="' . $active_class . '"><a href="' . site_url() . '/book-page/?cat_book=' . $category->slug . '"> ' . $category->name . '</a></li>';
+      }
+      $list .= '</ul>';
 
-    $list .= '<ul class="category_list">';
-    $active_class_all_category = empty($category_value) ? 'active' : '';
-    $list .= '<li class="' . $active_class_all_category . '"><a href="' . site_url() . '/book-page/"> All </a></li>';
-    foreach ($categories as $category) {
-      $active_class = ($category_value == $category->slug) ? 'active' : '';
-      $url = get_term_link($category);
-      $list .= '<li class="' . $active_class . '"><a href="' . site_url() . '/book-page/?cat_book=' . $category->slug . '"> ' . $category->name . '</a></li>';
-    }
-    $list .= '</ul>';
-
-    while ($post_query->have_posts()) : $post_query->the_post();
-      $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-      $list .= '<article class="book-item" style="background-image: url(' . esc_url($featured_img_url) . ');
+      while ($post_query->have_posts()) : $post_query->the_post();
+        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+        $list .= '<article class="book-item" style="background-image: url(' . esc_url($featured_img_url) . ');
 													              	background-color: rgba(255, 255, 255, 0);">
 														
                 <div class="book-content">
@@ -161,7 +161,10 @@ class Book_class
                   
                 </div>
               </article>';
-    endwhile;
+      endwhile;
+    else : ?>
+      <p><?php _e('Sorry, no Book matched your criteria.'); ?></p>
+<?php endif;
     wp_reset_postdata();
 
     $list .= '</div>';
