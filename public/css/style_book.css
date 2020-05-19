@@ -1,0 +1,161 @@
+div#book-section {
+  /* display: flex; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+div#book-section ul.category_list li {
+  list-style: none;
+  display: inline-block;
+  padding: 10px 15px;
+}
+div#book-section ul.category_list li a {
+  color: #232323;
+  text-decoration: none;
+}
+div#book-section ul.category_list li:hover {
+  color: #dc4545;
+}
+div#book-section ul.category_list li.active a {
+  color: #dc4545;
+}
+article.book-item {
+  width: 23%;
+  float: left;
+  flex-grow: 1;
+  margin: 10px 1%;
+  position: relative;
+  position: relative;
+  min-height: 360px;
+  max-width: 416px;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.book-content {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #ae0f21c7;
+  padding: 5px;
+}
+article.book-item:hover .book-content {
+  display: block;
+  transition: 0.6s;
+  animation: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 500s;
+}
+.book-content h3 {
+  font-family: "Rubik", sans-serif !important;
+  font-size: 24px;
+}
+.book-content h4 {
+  font-family: "Rubik", sans-serif !important;
+  font-size: 16px;
+}
+.book-content h3,
+.book-content h4 {
+  color: #f2f2f2;
+  text-align: center;
+}
+.book-content .book-top-content {
+  padding: 30px 0px 30px 0px;
+  color: #f2f2f2;
+}
+.book-content .book-top-content p {
+  line-height: 24px;
+}
+
+.book-content a.book-link {
+  color: #f2f2f2 !important;
+  font-family: "Rubik", sans-serif !important;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 600;
+  padding: 10px 0px;
+  display: inline-block;
+  color: #232323;
+  text-decoration: none;
+}
+
+article.case-item:hover .case-content {
+  display: block;
+  transition: 0.3s;
+  animation: cubic-bezier(0.075, 0.82, 0.165, 1);
+  animation-delay: 500s;
+}
+
+article.case-item .more-actions {
+  float: right;
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border-radius: 0px 0px 0px 0px;
+  text-align: center;
+}
+
+#more_books {
+  clear: both;
+  cursor: pointer;
+  display: block;
+  background-color: #dc4545;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  padding: 10px;
+  margin: 0 auto;
+  width: 120px;
+  text-align: center;
+}
+p.all_books_loaded {
+  clear: both;
+  text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  article.book-item {
+    width: 48%;
+  }
+}
+
+/* 
+    ##Device = Tablets, Ipads (landscape)
+    ##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  article.book-item {
+    width: 48%;
+  }
+}
+
+/* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  article.book-item {
+    width: 48%;
+  }
+}
+
+/* 
+    ##Device = Most of the Smartphones Mobiles (Portrait)
+    ##Screen = B/w 320px to 479px
+  */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  article.book-item {
+    width: 98%;
+  }
+}
