@@ -139,11 +139,11 @@ class Book_class
 
       $list .= '<ul class="category_list">';
       $active_class_all_category = empty($category_value) ? 'active' : '';
-      $list .= '<li class="' . $active_class_all_category . '"><a href="' . site_url() . '/book-page/"> All </a></li>';
+      $list .= '<li class="' . $active_class_all_category . '"><a href="' . site_url() . '/book-list/"> All </a></li>';
       foreach ($categories as $category) {
         $active_class = ($category_value == $category->slug) ? 'active' : '';
         $url = get_term_link($category);
-        $list .= '<li class="' . $active_class . '"><a href="' . site_url() . '/book-page/?cat_book=' . $category->slug . '"> ' . $category->name . '</a></li>';
+        $list .= '<li class="' . $active_class . '"><a href="' . site_url() . '/book-list/?cat_book=' . $category->slug . '"> ' . $category->name . '</a></li>';
       }
       $list .= '</ul>';
 
